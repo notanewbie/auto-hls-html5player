@@ -1,0 +1,74 @@
+<div>
+<link href="http://vjs.zencdn.net/5.19/video-js.min.css" rel="stylesheet"></link><script src="http://vjs.zencdn.net/5.19/video.min.js"></script>
+<video
+    id="my-player"
+    class="video-js"
+    controls
+    preload="auto"
+    data-setup='{}'
+    autoplay>
+  <source src="http://hlsdpi-cdn-as4.totalstream.net/dpilive/vidilliontv/vtv/ntrnaturevision/playlist.m3u8" type="application/x-mpegURL"></source>
+  <p class="vjs-no-js">
+    To view this video please enable JavaScript, and consider upgrading to a
+    web browser that
+    <a href="http://videojs.com/html5-video-support/" target="_blank">
+      supports HTML5 video
+    </a>
+  </p>
+</video>
+</div>
+<style type="text/css">
+#my-player {
+position:fixed;
+top:0px;
+left:0px;
+height:100vh;
+width:100vw;
+background-color: black;
+}
+#hls-player2 {
+position:fixed;
+top:0px;
+left:0px;
+height:100vh;
+width:100vw;
+background-color: black;
+}
+</style>
+<script type="text/javascript">
+hls_support = false
+URL = location.search
+URL = URL.replace(URL[0], "")
+function cuePlugin() {
+document.getElementsByTagName("div")[0].innerHTML = '<video src="' + URL + '" type="application/x-mpegURL" id="hls-player2" controls autoplay>';
+}
+if(navigator.userAgent.indexOf("Safari") != -1) {
+//Safari
+hls_support = true
+}
+if(navigator.userAgent.indexOf("Trident") != -1 || !!document.documentMode == true) {
+//MSIE
+hls_support = false
+}
+if(navigator.userAgent.indexOf("MSIE") != -1 || !!document.documentMode == true) {
+//MSIE 7.0
+hls_support = false
+}
+if(navigator.userAgent.indexOf("Chrome") != -1 ) {
+//Chrome
+hls_support = false
+}
+if(navigator.userAgent.indexOf("Firefox") != -1 ) {
+//Firefox
+hls_support = false
+}
+if(navigator.userAgent.indexOf("Edge") != -1 || !!document.documentMode == true) {
+//Edge
+hls_support = true
+}
+if(hls_support) {
+cuePlugin()
+}
+document.getElementsByTagName("video")[0].src = URL
+document.getElementsByTagName("source")[0].src = URL
+</script>
