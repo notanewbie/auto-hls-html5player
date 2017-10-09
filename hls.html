@@ -1,5 +1,5 @@
 <div>
-<link href="http://vjs.zencdn.net/5.19/video-js.min.css" rel="stylesheet"></link><script src="http://vjs.zencdn.net/5.19/video.min.js"></script>
+<link href="http://vjs.zencdn.net/5.19/video-js.min.css" rel="stylesheet"></link><script src="http://vjs.zencdn.net/5.19/video.min.js"></script><script src="http://vjs.zencdn.net/5.19/videojs-flash.js"></script>
 <video
     id="my-player"
     class="video-js"
@@ -7,7 +7,14 @@
     preload="auto"
     data-setup='{}'
     autoplay>
-  <source src="http://hlsdpi-cdn-as4.totalstream.net/dpilive/vidilliontv/vtv/ntrnaturevision/playlist.m3u8" type="application/x-mpegURL"></source>
+  <source src="http://hlsdpi-cdn-as4.totalstream.net/dpilive/vidilliontv/vtv/ntrnaturevision/playlist.m3u8" type="video/mp2t">
+  <source src="http://hlsdpi-cdn-as4.totalstream.net/dpilive/vidilliontv/vtv/ntrnaturevision/playlist.m3u8" type="application/x-mpegURL">
+  <source src="http://hlsdpi-cdn-as4.totalstream.net/dpilive/vidilliontv/vtv/ntrnaturevision/playlist.m3u8" type="video/mpeg-2">
+  <source src="http://hlsdpi-cdn-as4.totalstream.net/dpilive/vidilliontv/vtv/ntrnaturevision/playlist.m3u8" type="video/h.264">
+  <source src="http://hlsdpi-cdn-as4.totalstream.net/dpilive/vidilliontv/vtv/ntrnaturevision/playlist.m3u8" type="video/mpeg-4">
+  <source src="http://hlsdpi-cdn-as4.totalstream.net/dpilive/vidilliontv/vtv/ntrnaturevision/playlist.m3u8" type="video/mp4">
+  <source src="http://hlsdpi-cdn-as4.totalstream.net/dpilive/vidilliontv/vtv/ntrnaturevision/playlist.m3u8" type="video/mpeg">
+  <source src="http://hlsdpi-cdn-as4.totalstream.net/dpilive/vidilliontv/vtv/ntrnaturevision/playlist.m3u8">
   <p class="vjs-no-js">
     To view this video please enable JavaScript, and consider upgrading to a
     web browser that
@@ -69,6 +76,10 @@ hls_support = true
 if(hls_support) {
 cuePlugin()
 }
+if(hls_support) {
 document.getElementsByTagName("video")[0].src = URL
-document.getElementsByTagName("source")[0].src = URL
+}
+else {
+location.href = "flow.html" + location.search
+}
 </script>
