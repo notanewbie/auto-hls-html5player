@@ -8,7 +8,9 @@ height: 100vh;
 }
 </style>
 <html>
-<video id="video" controls autoplay />
+<div id="video">
+<video id="video" controls autoplay onerror="Error()" />
+</div>
 </html>
 <script src="https://video-dev.github.io/hls.js/dist/hls.js" />
 <script src="https://video-dev.github.io/hls.js/demo/canvas.js" />
@@ -17,10 +19,44 @@ height: 100vh;
 <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 <video id="video"></video>
 <script>
+function Error() {
+alert("There has been some kind of error. Try installing the allow-control-allow-origin plugin for Chrome (https://chrome.google.com/webstore/detail/allow-control-allow-origi/nlfbmbojpeacfghkpbjhddihlkkiljbi).")
+}
 URL = location.search
 URL = URL.replace(URL[0], "")
-  if(Hls.isSupported()) {
-    var video = document.getElementById('video');
+//alert(URL)
+if(navigator.userAgent.indexOf("Safari") != -1) {
+//Safari
+hls_support = true
+}
+if(navigator.userAgent.indexOf("Trident") != -1 || !!document.documentMode == true) {
+//MSIE
+hls_support = false
+}
+if(navigator.userAgent.indexOf("MSIE") != -1 || !!document.documentMode == true) {
+//MSIE 7.0
+hls_support = false
+}
+if(navigator.userAgent.indexOf("Chrome") != -1 ) {
+//Chrome
+hls_support = false
+}
+if(navigator.userAgent.indexOf("Firefox") != -1 ) {
+//Firefox
+hls_support = false
+}
+if(navigator.userAgent.indexOf("Edge") != -1 || !!document.documentMode == true) {
+//Edge
+hls_support = true
+}
+//alert(hls_support)
+//alert(Hls.isSupported())
+if(hls_support == true) {
+var video = document.getElementsByTagName("video")[0]
+video.src = URL
+}
+  else if(Hls.isSupported() && hls_support == false) {
+    var video = document.getElementsByTagName("video")[0]
     var hls = new Hls();
     hls.loadSource(URL);
     hls.attachMedia(video);
