@@ -1,30 +1,54 @@
+<div>
+<link href="http://vjs.zencdn.net/5.19/video-js.min.css" rel="stylesheet"></link><script src="http://vjs.zencdn.net/6.2.7/video.min.js"></script><script src="https://unpkg.com/videojs-flash@2.0.1/dist/videojs-flash.js"></script>
+<video
+    id="my-player"
+    class="video-js"
+    controls
+    preload="auto"
+    data-setup='{}'
+    autoplay>
+  <source src="http://hlsdpi-cdn-as4.totalstream.net/dpilive/vidilliontv/vtv/ntrnaturevision/playlist.m3u8" type="video/mp2t">
+  <source src="http://hlsdpi-cdn-as4.totalstream.net/dpilive/vidilliontv/vtv/ntrnaturevision/playlist.m3u8" type="application/x-mpegURL">
+  <source src="http://hlsdpi-cdn-as4.totalstream.net/dpilive/vidilliontv/vtv/ntrnaturevision/playlist.m3u8" type="video/mpeg-2">
+  <source src="http://hlsdpi-cdn-as4.totalstream.net/dpilive/vidilliontv/vtv/ntrnaturevision/playlist.m3u8" type="video/h.264">
+  <source src="http://hlsdpi-cdn-as4.totalstream.net/dpilive/vidilliontv/vtv/ntrnaturevision/playlist.m3u8" type="video/mpeg-4">
+  <source src="http://hlsdpi-cdn-as4.totalstream.net/dpilive/vidilliontv/vtv/ntrnaturevision/playlist.m3u8" type="video/mp4">
+  <source src="http://hlsdpi-cdn-as4.totalstream.net/dpilive/vidilliontv/vtv/ntrnaturevision/playlist.m3u8" type="video/mpeg">
+  <source src="http://hlsdpi-cdn-as4.totalstream.net/dpilive/vidilliontv/vtv/ntrnaturevision/playlist.m3u8">
+  <p class="vjs-no-js">
+    To view this video please enable JavaScript, and consider upgrading to a
+    web browser that
+    <a href="http://videojs.com/html5-video-support/" target="_blank">
+      supports HTML5 video
+    </a>
+  </p>
+</video>
+</div>
 <style type="text/css">
-#video {
-position: absolute;
-top: 0vh;
-left: 0vw;
-width: 100vw;
-height: 100vh;
+#my-player {
+position:fixed;
+top:0px;
+left:0px;
+height:100vh;
+width:100vw;
+background-color: black;
+}
+#hls-player2 {
+position:fixed;
+top:0px;
+left:0px;
+height:100vh;
+width:100vw;
+background-color: black;
 }
 </style>
-<html>
-<div id="video">
-<video id="video" controls autoplay onerror="Error()" />
-</div>
-</html>
-<script src="https://video-dev.github.io/hls.js/dist/hls.js" />
-<script src="https://video-dev.github.io/hls.js/demo/canvas.js" />
-<script src="https://video-dev.github.io/hls.js/demo/jsonpack.js" />
 <script type="text/javascript">
-<script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
-<video id="video"></video>
-<script>
-function Error() {
-alert("There has been some kind of error. Try installing the allow-control-allow-origin plugin for Chrome (https://chrome.google.com/webstore/detail/allow-control-allow-origi/nlfbmbojpeacfghkpbjhddihlkkiljbi).")
-}
+hls_support = false
 URL = location.search
 URL = URL.replace(URL[0], "")
-//alert(URL)
+function cuePlugin() {
+document.getElementsByTagName("div")[0].innerHTML = '<video src="' + URL + '" type="application/x-mpegURL" id="hls-player2" controls autoplay>';
+}
 if(navigator.userAgent.indexOf("Safari") != -1) {
 //Safari
 hls_support = true
@@ -49,20 +73,13 @@ if(navigator.userAgent.indexOf("Edge") != -1 || !!document.documentMode == true)
 //Edge
 hls_support = true
 }
-//alert(hls_support)
-//alert(Hls.isSupported())
-if(hls_support == true) {
-var video = document.getElementsByTagName("video")[0]
-video.src = URL
+if(hls_support) {
+cuePlugin()
 }
-  else if(Hls.isSupported() && hls_support == false) {
-    var video = document.getElementsByTagName("video")[0]
-    var hls = new Hls();
-    hls.loadSource(URL);
-    hls.attachMedia(video);
-    hls.on(Hls.Events.MANIFEST_PARSED,function() {
-      video.play();
-  });
- }
-</script>
+if(hls_support) {
+document.getElementsByTagName("video")[0].src = URL
+}
+else {
+location.href = "hls.js-test.html?src=" + URL + "&enableStreaming=true&autoRecoverError=true&enableWorker=true&dumpfMP4=false&levelCapping=-1&defaultAudioCodec=undefined"
+}
 </script>
