@@ -17,6 +17,9 @@
 </video>
 </div>
 <style type="text/css">
+div {
+border-size: 0px;
+}
 #my-player {
 position:fixed;
 top:0px;
@@ -24,6 +27,7 @@ left:0px;
 height:100vh;
 width:100vw;
 background-color: black;
+border-size: 0px;
 }
 #hls-player2 {
 position:fixed;
@@ -72,6 +76,6 @@ if(hls_support) {
 document.getElementsByTagName("video")[0].src = URL
 }
 else {
-location.href = "https://notanewbie.000webhostapp.com/hls-player.html?" + URL
+document.getElementsByTagName("div")[0].innerHTML = '<iframe id="my-player" src="https://notanewbie.000webhostapp.com/hls-player.html?' + URL + '">'
 }
 </script>
