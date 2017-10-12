@@ -11,6 +11,6 @@ Live DVR<br />
 Greating CC support<br />
 <b>Cons</b><br />
 Streams stutter more than built-in players that support HLS.<br />
-No CORS (cross-origin) support<br />
+No CORS (cross-origin) support (fixed?)<br />
 Unsecure (HTTP) URLs or secure (HTTPS) m3u8s which include unsecure segments are not supported<br />
 No support for media from servers with invalid certificates
