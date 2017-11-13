@@ -7,8 +7,8 @@ This lets you embed HLS streams and run it, even locally, without "cannot load b
 <br />
 <b>Pros</b><br />
 Plays in all modern browsers, with no need to install, embed or load anything else.<br />
-Live DVR<br />
-Greating CC support<br />
+Live DVR on desktops<br />
+Greater CC support<br />
 <b>Cons</b><br />
 Streams stutter more than built-in players that support HLS.<br />
 Streams will pause occaisionally (this seems more frequent with Twitch streams).<br />
